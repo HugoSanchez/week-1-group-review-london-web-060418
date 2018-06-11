@@ -2,7 +2,24 @@
 
 class Car
 
+  attr_accessor :make :model
 
+  @@all = []
+
+  def initialize(input_hash)
+    @make = input_hash[:make]
+    @model = input_hash[:model]
+
+    @@all << self
+  end
+
+  def drive
+    puts "VROOOOOOOOOOOOM!"
+  end
+
+  def self.all
+    @@all
+  end
 
 end
 

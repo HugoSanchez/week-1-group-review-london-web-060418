@@ -1,3 +1,4 @@
+require 'pry'
 ## QUESTION 1
 
 pokemon = [
@@ -62,8 +63,56 @@ pokemon = [
 
 
 # How would you get the url for Bulbasaur's ability?
+
+def find_Bulbasaur_url(hash, pokemon_name)
+  url = nil
+  hash.each do |creature|
+    if creature[:name] == pokemon_name
+      url = creature[:abilities][0][:ability][:url]
+    end
+  end
+  url
+end
+
+
 # How would you return the first pokemon with base experience over 40?
+
+def first_by_experience(hash, exp)
+  hash.find do |pmon|
+    pmon[:base_experience] >= exp
+  end
+end
+
 # How would you return ALL OF THE pokemon with base experience over 40? (Gotta catch em all)
+
+def find_all_by_experience(pokemon, exp)
+  pokemon.select do |pmon|
+    pmon[:base_experience] >= exp
+  end
+end
+
 # How would you return an array of all of the pokemon's names?
+
+def find_names(hash)
+  names = hash.map do |pmon|
+    pmon[:name]
+  end
+  names
+end
+
 # How would you determine whether or not the pokemon array contained any pokemon with a weight greater than 60?
-#  whatever method you use should return true if there are any such pokemon, false if not.
+
+def check_weight(hash, weight)
+  selection = hash.select do |pmon|
+    pmon[:weight] >= weight
+  end
+  if selection.length > 0
+    return true
+  else
+    return false
+  end
+end
+
+
+binding.pry
+1
